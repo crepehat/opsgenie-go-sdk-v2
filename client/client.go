@@ -506,7 +506,7 @@ func (cli *OpsGenieClient) Exec(ctx context.Context, request ApiRequest, result 
 	metricPublisher.publish(buildSdkMetric(transactionId, request.ResourcePath(), "", nil, request, result, duration(startTime, time.Now().UnixNano())))
 	cli.Config.Logger.
 		WithFields(logrus.Fields{
-			"metadata":      request.Metadata,
+			"metadata":      request.Metadata(request),
 			"resource_path": request.ResourcePath(),
 			"params":        request.RequestParams(),
 			"method":        request.Method(),
